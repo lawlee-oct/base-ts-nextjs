@@ -1,34 +1,33 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+### Giải thích cấu trúc source:
+- Source được build bằng CRA
 
-## Getting Started
+| Thư mục   | Chức năng     |
+| :-------- | :-------------|
+| assets | Lưu trữ các cài đặt tĩnh như ảnh, font, các định dạng file css tĩnh      |
+| components |Lưu trữ các common component dùng chung |
+| configs | Lưu trữ các config của các thư viện (Hiện tại có Axios / I18n) |
+| constants | Lưu trữ các file khai báo các hằng số |
+| screens | Lưu trữ các folder theo tên màn hình |
+| stores | Lưu trữ các cài đặt của redux - source sử dụng [Redux toolkit](https://redux-toolkit.js.org/introduction/getting-started) |
+| .eslintrc.js / .prettierrc / .editorconfig | config linter code / format code ts, tsx / format editor để đồng bộ 3 chức năng này theo hệ điều hành |
+| config-overrides.js | File để tuỳ biến cấu hình webpack mặc định của CRA |
 
-First, run the development server:
+- Source viết bằng Typescript - Ưu tiên sử dụng typescript (có cho phép allowJS ở tsconfig)
+- Đa số các configs code style / code convention đều là mặc định của thư viện
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+### Quy tắc đặt tên
+- Tên biến/Tên file có ý nghĩa
+- Tên folder camelCase, tên file function/hook/constant camelCase. Tên component/provider in hoa chữ cái đầu của mỗi từ. Không viết code sử lý trong file index.ts / index.tsx
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Nguyên tắc Merge Request
+- Hạn chế sửa .eslintrc / không eslint-disable-next-line nếu chưa cần thiết
+- 1 pull request chỉ có 1 commit
+- 1 pull request không vượt quá 20 file
+- Trong file component hở ra giữa các phần logic/style cho dễ nhìn
+- Thứ tự import: Các Thư viện <hở 1 dòng> Các Component <hở 1 dòng> Các common function <hở 1 dòng> Style css/scss/styled & Image
+- Không style inline / thừa thẻ đóng / đảm bảo log build không có error, warning
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+### Để chạy
+- Clone source and run yarn install in source code
+- Create file .env look like .env.example
+- Run: yarn dev
